@@ -1,0 +1,33 @@
+{
+  "name": "on-the-fly",
+  "version": "0.1.0",
+  "description": "Load lesscs, markdown and coffee-script files on the fly",
+  "main": "onfly.js",
+  "scripts": {
+    "prepublish" : "coffee --compile onfly.coffee",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CliffS/on-the-fly.git"
+  },
+  "keywords": [
+    "less",
+    "lesscs",
+    "markdown",
+    "coffeescript",
+    "coffee-script",
+    "nginx"
+  ],
+  "author": "Cliff Stanford",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CliffS/on-the-fly/issues"
+  },
+  "dependencies": {
+    "coffee-script": "^1.8.0",
+    "etag": "^1.5.1",
+    "less": "^2.1.1",
+    "marked": "^0.3.2"
+  }
+}
