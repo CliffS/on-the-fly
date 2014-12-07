@@ -87,6 +87,6 @@ server = http.createServer (req, res) ->
             res.end "Unknown file suffix of \"#{suffix}\""
 
 
+server.listen '/var/run/www/on-the-fly.sock'
 
-
-server.listen 8000, 'localhost'
+# server.listen 8000, 'localhost'
