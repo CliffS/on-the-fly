@@ -4,7 +4,7 @@
   "description": "Load lesscs, markdown and coffee-script files on the fly",
   "main": "server.js",
   "scripts": {
-    "prepublish" : "coffee --compile server.coffee",
+    "prepublish": "coffee --compile server.coffee",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,7 +16,6 @@
     "lesscs",
     "markdown",
     "coffeescript",
-    "coffee-script",
     "nginx"
   ],
   "author": "Cliff Stanford",
@@ -25,9 +24,10 @@
     "url": "https://github.com/CliffS/on-the-fly/issues"
   },
   "dependencies": {
-    "coffee-script": "^1.8.0",
-    "etag": "^1.5.1",
-    "less": "^2.1.1",
-    "marked": "^0.3.2"
+    "coffeescript": "^2.1.1",
+    "etag": "^1.8.1",
+    "less": "^2.7.3",
+    "marked": "^0.3.12",
+    "systemd": "^0.3.1"
   }
 }

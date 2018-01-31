@@ -1,0 +1,8 @@
+[Unit]
+Description=Socket for the on-the-fly service
+
+[Socket]
+ListenStream=/run/on-the-fly.socket
+
+[Install]
+WantedBy=sockets.target

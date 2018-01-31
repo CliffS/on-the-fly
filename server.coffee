@@ -1,7 +1,6 @@
 ###
 # Generic server for file conversion on the fly
 ###
-"use strict"
 
 http    = require 'http'
 url     = require 'url'
@@ -9,26 +8,22 @@ fs      = require 'fs'
 less    = require 'less'
 Path    = require 'path'
 md      = require 'marked'
-coffee  = require 'coffee-script'
+coffee  = require 'coffeescript'
 etag    = require 'etag'
 
 server = http.createServer (req, res) ->
-#  console.log req.headers
   parsedurl = url.parse req.url, true
   file = parsedurl.pathname
   pretty = parsedurl.query.pretty?
   unless match = file.match /\.(\w+)$/
     res.writeHead 501, 'Not Implemented'
-    res.end "No filename suffix found in \"#{file}\""
-    console.log match
-    return
+    return res.end "No filename suffix found in \"#{file}\""
   suffix = match[1]
   try
     tag = etag fs.statSync file
   catch
     res.writeHead 404, 'File not found'
-    res.end "#{file} not found"
-    return
+    return res.end "#{file} not found"
   res.setHeader 'Etag', tag
   if req.headers['if-none-match'] is tag
     res.writeHead 304, 'Not Modified'
@@ -76,9 +71,8 @@ server = http.createServer (req, res) ->
               result = coffee.compile data
             catch err
                 res.writeHead 500, 'Syntax Error'
-                res.end "Syntax Error: #{err.message}
+                return res.end "Syntax Error: #{err.message}
                   on line #{err.location.first_line}"
-                return
             res.writeHead 200,
               'Content-TYpe': 'application/x-javascript'
             res.end result
@@ -87,6 +81,8 @@ server = http.createServer (req, res) ->
             res.end "Unknown file suffix of \"#{suffix}\""
 
 
-server.listen '/var/run/www/on-the-fly.sock'
+# server.listen '/var/run/www/on-the-fly.sock'
 
 # server.listen 8000, 'localhost'
+
+server.listen 'systemd'
