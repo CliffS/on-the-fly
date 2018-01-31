@@ -4,7 +4,8 @@
   "description": "Load lesscs, markdown and coffee-script files on the fly",
   "main": "server.js",
   "scripts": {
-    "prepublish": "coffee --compile server.coffee",
+    "build": "coffee --compile server.coffee",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
