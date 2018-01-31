@@ -3,6 +3,9 @@ Description=Socket for the on-the-fly service
 
 [Socket]
 ListenStream=/run/on-the-fly.socket
+SocketUser=www-data
+SocketGroup=www-data
+RemoveOnStop=on
 
 [Install]
 WantedBy=sockets.target

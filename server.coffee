@@ -10,6 +10,7 @@ Path    = require 'path'
 md      = require 'marked'
 coffee  = require 'coffeescript'
 etag    = require 'etag'
+require 'systemd'
 
 server = http.createServer (req, res) ->
   parsedurl = url.parse req.url, true
