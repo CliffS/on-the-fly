@@ -25,6 +25,7 @@
     "url": "https://github.com/CliffS/on-the-fly/issues"
   },
   "dependencies": {
+    "autoquit": "^0.1.6",
     "coffeescript": "^2.1.1",
     "etag": "^1.8.1",
     "less": "^2.7.3",

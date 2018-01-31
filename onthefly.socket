@@ -2,7 +2,7 @@
 Description=Socket for the on-the-fly service
 
 [Socket]
-ListenStream=/run/on-the-fly.socket
+ListenStream=/run/onthefly.socket
 SocketUser=www-data
 SocketGroup=www-data
 RemoveOnStop=on

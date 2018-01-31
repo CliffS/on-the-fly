@@ -11,6 +11,7 @@ md      = require 'marked'
 coffee  = require 'coffeescript'
 etag    = require 'etag'
 require 'systemd'
+require 'autoquit'
 
 server = http.createServer (req, res) ->
   parsedurl = url.parse req.url, true
@@ -86,4 +87,9 @@ server = http.createServer (req, res) ->
 
 # server.listen 8000, 'localhost'
 
-server.listen 'systemd'
+server.autoQuit timeOut: 60
+
+if process.env.LISTEN_PID > 0 
+  server.listen 'systemd'
+else
+  server.listen 8000, 'localhost'

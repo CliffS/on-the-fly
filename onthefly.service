@@ -1,14 +1,14 @@
 [Unit]
 Description=Less/Coffee conversion on the fly
 After=nss-user-lookup.target
-Requires=on-the-fly.socket
+Requires=onthefly.socket
 
 [Service]
-WorkingDirectory=/usr/local/on-the-fly
+WorkingDirectory=/usr/local/onthefly
 StandardOutput=syslog
-SyslogIdentifier=on-the-fly
+SyslogIdentifier=onthefly
 ExecStart=/usr/local/bin/node server.js
-User=root
+User=www-data
 Group=www-data
 
 [Install]
