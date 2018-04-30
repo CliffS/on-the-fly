@@ -12,10 +12,22 @@ coffee  = require 'coffeescript'
 etag    = require 'etag'
 require 'systemd'
 require 'autoquit'
+bunyan  = require 'bunyan'
+
+log = bunyan.createLogger
+  name: 'on-the-fly'
+  streams: [
+    type: 'rotating-file'
+    period: '1w'
+    count: 4
+    path: '/var/log/on-the-fly.log'
+    level: 'debug'
+  ]
 
 server = http.createServer (req, res) ->
   parsedurl = url.parse req.url, true
   file = parsedurl.pathname
+  log.info file
   pretty = parsedurl.query.pretty?
   unless match = file.match /\.(\w+)$/
     res.writeHead 501, 'Not Implemented'
@@ -33,7 +45,7 @@ server = http.createServer (req, res) ->
   else
     fs.readFile file, 'utf-8', (err, data) ->
       if err
-        console .log err
+        log.error err
         res.writeHead 404, 'File not found'
         res.end "#{err.message}"
       else
@@ -87,9 +99,14 @@ server = http.createServer (req, res) ->
 
 # server.listen 8000, 'localhost'
 
-server.autoQuit timeOut: 60
+server.autoQuit
+  timeOut: 60
+  exitFn: ->
+    log.info 'server autoquit'
+    process.exit 0
 
-if process.env.LISTEN_PID > 0 
+log.info 'server started'
+if process.env.LISTEN_PID > 0
   server.listen 'systemd'
 else
   server.listen 8000, 'localhost'
