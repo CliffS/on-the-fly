@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "autoquit": "^0.1.6",
-    "bunyan": "^1.8.12",
+    "bunyan": "^1.8.13",
     "coffeescript": "^2.5.1",
     "etag": "^1.8.1",
     "less": "^3.11.1",
